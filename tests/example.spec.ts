@@ -24,5 +24,13 @@ test('test', async ({ page }) => {
   await page.keyboard.press('Enter')
 
   await expect(page.locator('//ol[contains(@class, \'ui-search-layout\')]')).toBeVisible()
-  await page.pause()
+  //await page.pause()
+
+  const titles = await page.locator('//ol[contains(@class, \'ui-search-layout\')]//li//h2').allInnerTexts()
+
+  console.log('The total number of results are: ', titles.length)
+
+  for (let title of titles){
+    console.log('Element: ', title)
+  }
 });
